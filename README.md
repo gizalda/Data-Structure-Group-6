@@ -3,7 +3,7 @@
 Nama: Annisa Latifa Alquraini
 NIM: D121241038
 
-Problem Link: https://www.codechef.com/practice/course/interview-dsa/DSAPREP_09/problems/NEC
+Problem Link: https://www.codechef.com/practice/course/interview-dsa/DSAPREP_09/problems/NEC (Queues)
 
 Level Difficulty: 800
 
