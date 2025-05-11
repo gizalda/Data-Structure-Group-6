@@ -1,16 +1,9 @@
 # Data-Structure-Group-6
 
-Nama + NIM:
-- Ahmad Nur Alim (D121241023)
 - Annisa Latifa Alquraini (D121241038)
-- Gizalda Risqia Kirani Subehang (D121241098)
-- Nadya Kezia Georgina Shallom Toban (D121241002)
-- Muh. Fajar Rezky Ramadhan (D121241011)
 
-Problem Link:
-- Queues:
+Problem Link: https://www.codechef.com/practice/course/interview-dsa/DSAPREP_09/problems/NEC
 
-Level Difficulty:
-- Queues:
+Level Difficulty: 800
 
-Short approach summary:
+Short approach summary: Hitung jumlah total manik-manik dari semua kalung. Jika jumlah total dapat dibagi rata ke dalam jumlah kalung yang ada, maka distribusi merata mungkin. Jika tidak, maka distribusi merata tidak mungkin.
