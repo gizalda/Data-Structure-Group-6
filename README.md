@@ -1,6 +1,7 @@
 # Data-Structure-Group-6
 
-Annisa Latifa Alquraini (D121241038)
+Nama: Annisa Latifa Alquraini
+NIM: D121241038
 
 Problem Link: https://www.codechef.com/practice/course/interview-dsa/DSAPREP_09/problems/NEC
 
