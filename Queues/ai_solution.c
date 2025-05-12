@@ -1,42 +1,46 @@
 #include <stdio.h>
-
-void rotateLeft(int arr[], int n, int k) {
-    int temp[k];
-    for (int i = 0; i < k; i++) {
-        temp[i] = arr[i];
-    }
-
-    for (int i = k; i < n; i++) {
-        arr[i - k] = arr[i];
-    }
-
-    for (int i = 0; i < k; i++) {
-        arr[n - k + i] = temp[i];
-    }
-}
+#include <stdlib.h>
 
 int main() {
     int n, k;
-    printf("Masukkan jumlah mutiara (n): ");
+
+    printf("Masukkan jumlah manik-manik (n): ");
     scanf("%d", &n);
-    
-    int arr[n];
-    printf("Masukkan elemen kalung:\n");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
+
+    if (n <= 0) {
+        printf("Jumlah manik-manik harus positif.\n");
+        return 1;
     }
 
-    printf("Masukkan jumlah rotasi ke kiri (k): ");
+    int *necklace = (int *)malloc(n * sizeof(int));
+
+    printf("Masukkan nilai untuk setiap manik-manik:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &necklace[i]);
+    }
+
+    printf("Masukkan jumlah geseran ke kiri (k): ");
     scanf("%d", &k);
 
-    k = k % n;
-    rotateLeft(arr, n, k);
+    int *modified_necklace = (int *)malloc(n * sizeof(int));
 
-    printf("Kalung setelah dimodifikasi:\n");
+    // Melakukan pergeseran
     for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
+        int new_position = (i - k % n + n) % n;
+        modified_necklace[new_position] = necklace[i];
     }
-    printf("\n");
+
+    printf("Kalung setelah modifikasi: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d", modified_necklace[i]);
+        if (i < n - 1) {
+            printf(", ");
+        }
+    }
+    printf(".\n");
+
+    free(necklace);
+    free(modified_necklace);
 
     return 0;
 }
