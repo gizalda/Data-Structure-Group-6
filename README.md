@@ -22,8 +22,8 @@
 - Short Approach Summary:
   
 *Stacks*
-- Nama:
-- NIM:
+- Nama: Nadya Kezia Goergina Shallom Toban
+- NIM: D121241002
 - Level Difficulty: 
 - Problem Link:
 - Short Approach Summary:
