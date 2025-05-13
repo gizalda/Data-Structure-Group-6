@@ -1,63 +1,64 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int twoStacks(int maxSum, int a[], int n, int b[], int m) {
-    int sum = 0;
+int gameOfTwoStacks(int maxSum, int firstCount, int* first, int secondCount, int* second) {
     int count = 0;
-    int temp = 0;
+    int sum = 0;
     int i = 0, j = 0;
-    
-    // Hitung berapa banyak yang bisa diambil dari stack A saja
-    while (i < n && sum + a[i] <= maxSum) {
-        sum += a[i];
+
+    // Ambil elemen dari kedua stack selama memungkinkan
+    while (i < firstCount && sum + first[i] <= maxSum) {
+        sum += first[i];
         i++;
         count++;
     }
-    
-    // Sekarang coba tambahkan dari stack B, sambil kurangi dari A jika perlu
-    while (j < m && i >= 0) {
-        sum += b[j];
+
+    int maxCount = count;
+
+    // Coba kembalikan elemen dari stack pertama dan ambil dari stack kedua
+    while (j < secondCount) {
+        sum += second[j];
         j++;
-        
-        // Jika melebihi maxSum, kurangi elemen dari A
+
         while (sum > maxSum && i > 0) {
             i--;
-            sum -= a[i];
+            sum -= first[i];
         }
-        
-        // Update count jika kondisi terpenuhi
-        if (sum <= maxSum && i + j > count) {
+
+        if (sum <= maxSum && count < i + j) {
             count = i + j;
+            if (count > maxCount) {
+              maxCount = count;
+            }
         }
     }
-    
-    return count;
+    return maxCount;
 }
 
 int main() {
     int g;
     scanf("%d", &g);
-    
-    while (g--) {
-        int n, m, maxSum;
-        scanf("%d %d %d", &n, &m, &maxSum);
-        
-        int *a = (int *)malloc(n * sizeof(int));
-        int *b = (int *)malloc(m * sizeof(int));
-        
-        for (int i = 0; i < n; i++) {
-            scanf("%d", &a[i]);
+
+    for (int g_itr = 0; g_itr < g; g_itr++) {
+        int firstCount, secondCount, maxSum;
+        scanf("%d %d %d", &firstCount, &secondCount, &maxSum);
+
+        int *first = malloc(firstCount * sizeof(int));
+        for (int i = 0; i < firstCount; i++) {
+            scanf("%d", &first[i]);
         }
-        
-        for (int i = 0; i < m; i++) {
-            scanf("%d", &b[i]);
+
+        int *second = malloc(secondCount * sizeof(int));
+        for (int j = 0; j < secondCount; j++) {
+            scanf("%d", &second[j]);
         }
-        
-        printf("%d\n", twoStacks(maxSum, a, n, b, m));
-        
-        free(a);
-        free(b);
+
+        int result = gameOfTwoStacks(maxSum, firstCount, first, secondCount, second);
+        printf("%d\n", result);
+
+        free(first);
+        free(second);
     }
-    
+
     return 0;
 }
