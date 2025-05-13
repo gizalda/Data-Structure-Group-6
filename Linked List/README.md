@@ -1,5 +1,5 @@
-- Nama: 
-- NIM: 
-- Level Difficulty: 
-- Problem Link: 
+- Nama: Gizalda Risqia Kirani Subehang
+- NIM: D121241098
+- Level Difficulty: Easy
+- Problem Link: https://www.geeksforgeeks.org/write-a-c-function-to-print-the-middle-of-the-linked-list/
 - Short Approach Summary: 
