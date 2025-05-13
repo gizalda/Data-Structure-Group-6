@@ -4,9 +4,9 @@
 int gameOfTwoStacks(int maxSum, int firstCount, int* first, int secondCount, int* second) {
     int count = 0;
     int sum = 0;
-    int i = 0, j = 0;
+    int i = 0;
 
-    // Ambil elemen dari kedua stack selama memungkinkan
+    // Ambil elemen dari stack pertama selama memungkinkan
     while (i < firstCount && sum + first[i] <= maxSum) {
         sum += first[i];
         i++;
@@ -14,8 +14,9 @@ int gameOfTwoStacks(int maxSum, int firstCount, int* first, int secondCount, int
     }
 
     int maxCount = count;
+    int j = 0;
 
-    // Coba kembalikan elemen dari stack pertama dan ambil dari stack kedua
+    // Coba ambil elemen dari stack kedua setelah mengambil beberapa dari stack pertama
     while (j < secondCount) {
         sum += second[j];
         j++;
@@ -25,10 +26,9 @@ int gameOfTwoStacks(int maxSum, int firstCount, int* first, int secondCount, int
             sum -= first[i];
         }
 
-        if (sum <= maxSum && count < i + j) {
-            count = i + j;
-            if (count > maxCount) {
-              maxCount = count;
+        if (sum <= maxSum) {
+            if (i + j > maxCount) {
+                maxCount = i + j;
             }
         }
     }
