@@ -8,6 +8,10 @@ struct Node {
 
 struct Node* createNode(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Gagal mengalokasikan memori.\n");
+        exit(EXIT_FAILURE);
+    }
     newNode->data = data;
     newNode->next = NULL;
     return newNode;
@@ -15,7 +19,6 @@ struct Node* createNode(int data) {
 
 void insertAtEnd(struct Node** head_ref, int data) {
     struct Node* new_node = createNode(data);
-
     if (*head_ref == NULL) {
         *head_ref = new_node;
         return;
@@ -25,8 +28,17 @@ void insertAtEnd(struct Node** head_ref, int data) {
     while (current->next != NULL) {
         current = current->next;
     }
-
     current->next = new_node;
+}
+
+void printList(struct Node* head) {
+    printf("Isi linked list: ");
+    while (head != NULL) {
+        printf("%d", head->data);
+        if (head->next != NULL) printf(" -> ");
+        head = head->next;
+    }
+    printf("\n");
 }
 
 int countNodes(struct Node* head) {
@@ -40,19 +52,29 @@ int countNodes(struct Node* head) {
 
 void printMiddle(struct Node* head) {
     int count = countNodes(head);
-
     if (count == 0) {
-        printf("List kosong\n");
+        printf("List kosong.\n");
         return;
     }
 
-    int middleIndex = count / 2; 
+    int middleIndex = count / 2;
     struct Node* current = head;
     for (int i = 0; i < middleIndex; i++) {
         current = current->next;
     }
 
-    printf("Middle node: %d\n", current->data);
+    printf("Simpul tengah: %d\n", current->data);
+}
+
+void freeList(struct Node** head_ref) {
+    struct Node* current = *head_ref;
+    struct Node* nextNode;
+    while (current != NULL) {
+        nextNode = current->next;
+        free(current);
+        current = nextNode;
+    }
+    *head_ref = NULL;
 }
 
 int main() {
@@ -65,7 +87,9 @@ int main() {
     insertAtEnd(&head, 50);
     insertAtEnd(&head, 60);
 
-    printMiddle(head); 
+    printList(head);
+    printMiddle(head);
 
+    freeList(&head);
     return 0;
 }
